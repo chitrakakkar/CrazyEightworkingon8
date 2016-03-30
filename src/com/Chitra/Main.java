@@ -38,13 +38,6 @@ public  class Main {
         System.out.println(ComputerPlayer.toString());
         System.out.println("The Current Card Played on the table is " + Hand.PlayedCard);
         //System.out.println(Hand.DeckOfCards.DeckSize());
-//        for (Card C : HumanPlayer.PlayerHand.CardsinHand
-//                ) {
-//            //sSystem.out.println("Checking...");
-//            if (ComputerPlayer.PlayerHand.CardsinHand.contains(C)) {
-//                System.out.println("Stop program , error in Dealing Card" + C.toString() + "common in boths");
-//
-//            }
 
             while (true)
                 // check if you already have a winner
