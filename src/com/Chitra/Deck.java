@@ -51,10 +51,6 @@ public  class Deck
     {
         return DeckOfCard.pop();
     }
-    //
-//    public Card AddCard(Card c)
-//    {
-//
-//    }
+
 
 }

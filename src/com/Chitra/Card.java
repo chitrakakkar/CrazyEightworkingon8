@@ -42,29 +42,6 @@ public class Card
         return this.Suit + this.Value;
     }
 
-//    public boolean CheckLegalCard(Card card,Card PlayedCard,Player P)
-//    {
-//            boolean Flagg = true;
-//            if(card.Value.equals( 8))
-//            {
-//                PlayedCard = PickSuit(P,PlayedCard);
-//                System.out.println("after 8, the new suit is "+ PlayedCard.Suit);
-//                Flagg=true;
-//            }
-//            else if ((card.Value.equals(PlayedCard.Value))||card.Suit.equals(PlayedCard.Suit))
-//            {
-//               // System.out.println("legal check passed");
-//                Flagg=true;
-//
-//            }
-//
-//            else {
-//                //System.out.println("legal check failed");
-//                Flagg = false;
-//            }
-//
-//        return Flagg;
-//    }
 
     public HashMap<Integer,Card> CheckLegalCard(Card card,Card PlayedCard,Player P)
     {
@@ -78,94 +55,50 @@ public class Card
         }
         else if ((card.Value.equals(PlayedCard.Value))||card.Suit.equals(PlayedCard.Suit))
         {
-             System.out.println("legal check passed , not 8");
+            //System.out.println(P.Name + "legal check passed , not 8");
+            PlayedCard.setSuit(card.Suit);
+            PlayedCard.setValue(card.Value);
             Flagg=1;
 
         }
 
         else {
-            System.out.println("legal check failed");
+            //System.out.println("legal check failed");
             Flagg = 0;
         }
         Test.put(Flagg,PlayedCard);
         return Test;
     }
 
-    public Card PickSuit(Player player,Card CardOnTable)
-    {
-        if(player.Name.equals("Human"))
-        {
-            String UserInput ="";
-            while (true)
-            {
+    public Card PickSuit(Player player,Card CardOnTable) {
+        if (player.Name.equals("Human")) {
+            String UserInput = "";
+            while (true) {
                 try {
                     Scanner scanner = new Scanner(System.in);
                     System.out.println("Which suit do you want to choose(Hearts_ /Spades_ /Diamonds_ /Clubs_ ?");
                     UserInput = scanner.next();
-
                     break;
-                }
-                catch (InputMismatchException ime)
-                {
+                } catch (InputMismatchException ime) {
                     System.out.println("Please enter a String");
                 }
-                CardOnTable.setSuit(UserInput);
-                System.out.println("you changed card on table to "+ CardOnTable);
-            }
+                }
+            CardOnTable.setSuit(UserInput);
+            System.out.println("you changed card on table to " + CardOnTable);
+
 
         }
         // computer
-        else
-        { HashMap<String,Integer> Tracker = new HashMap<>();
-            Tracker.put("Hearts_",0);Tracker.put("Clubs_",0);Tracker.put("Diamonds_",0);Tracker.put("Spades_",0);
-            int HeartCounter =0,SpadeCounter=0,DiamondCounter =0,ClubCounter=0;
-            for (Card s:player.PlayerHand.CardsinHand
-                 )
-            {
-                if(s.Suit.equals("Hearts_"))
-                {
-                    HeartCounter++;
-                    Tracker.put(s.Suit,HeartCounter);
-                }
-                if(s.Suit.equals("Clubs_"))
-                {
-                    ClubCounter++;
-                    Tracker.put(s.Suit,ClubCounter);
-                }
-                if(s.Suit.equals("Diamonds_"))
-                {
-                    DiamondCounter++;
-                    Tracker.put(s.Suit,DiamondCounter);
-                }
-                else
-                {
-                    SpadeCounter++;
-                    Tracker.put(s.Suit,SpadeCounter);
-                }
-                int maxIndex = Tracker.get("Hearts_");
-                String Suitttt = "Hearts_";
-                for (String k:Tracker.keySet()
-                     ) {
+        else {
+            String[] Suits = {"Hearts_", "Spades_", "Clubs_", "Diamonds_"};
+            Random rnd = new Random();
+            CardOnTable.setSuit(Suits[rnd.nextInt(Suits.length)]);
 
-                    if (maxIndex > Tracker.get(k))
-                    {
-                        Suitttt = k;
-                        maxIndex = Tracker.get(k);
-                    }
-
-
-                }
-                CardOnTable.setSuit(Suitttt);
-
-            }
-
-
-
+            System.out.println(player.Name + " wants  " + CardOnTable.Suit);
         }
-        System.out.println(player.Name + " wants  " + CardOnTable.Suit + " Now because ");
         return CardOnTable;
-    }
 
+    }
 
 
 

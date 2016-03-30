@@ -35,7 +35,7 @@ public  class Main {
         TimeUnit.MILLISECONDS.sleep(3000);
         System.out.println(HumanPlayer.toString());
         System.out.println("Computer has " + ComputerPlayer.GetPlayerHandSize() + " Cards");
-        //System.out.println(ComputerPlayer.toString());
+        System.out.println(ComputerPlayer.toString());
         System.out.println("The Current Card Played on the table is " + Hand.PlayedCard);
         //System.out.println(Hand.DeckOfCards.DeckSize());
 //        for (Card C : HumanPlayer.PlayerHand.CardsinHand
@@ -73,18 +73,13 @@ public  class Main {
                     }
                      // continue the game
                     else {
-                        HumanPlayer = READCARD(HumanPlayer);
-                        Hand.PlayedCard = DiscarDdeck.DeckOfCard.pop();
-
-                        System.out.println("You Played " + Hand.PlayedCard);
+                        HumanPlayer = READCARDForHuman(HumanPlayer);
+                        System.out.println("You Played " + DiscarDdeck.DeckOfCard.pop());
                         System.out.println("You got cards " + HumanPlayer.PlayerHand.CardsinHand);
+
                         ComputerPlayer = COMPUPLAY(ComputerPlayer);
-                        Hand.PlayedCard = DiscarDdeck.DeckOfCard.pop();
-                        System.out.println("Computer Played " + Hand.PlayedCard);
-                        System.out.println("Computer got cards "+ComputerPlayer.PlayerHand.CardsinHand);
-                        //
-
-
+                        System.out.println("Computer Played " + DiscarDdeck.DeckOfCard.pop());
+                        //System.out.println("Computer got cards "+ComputerPlayer.PlayerHand.CardsinHand);
                 }
 
 
@@ -92,7 +87,7 @@ public  class Main {
         }
 
 
-    public static Player READCARD(Player P) {
+    public static Player READCARDForHuman(Player P ) {
         // ask the human which card he wants to play
         Boolean Flag = true;
         Card card1 = new Card("Spades_1");
@@ -108,7 +103,8 @@ public  class Main {
                 System.out.println("you got " + card1);
                 System.out.println("Your card set " + P.PlayerHand.CardsinHand);
 
-            } else {
+            }
+            else {
                 card1 = new Card(HumanInput);
 //                Card HumanInput1 = new Card(HumanInput);
                 // Validation of Human input
@@ -116,44 +112,27 @@ public  class Main {
                 // handsplayed card
                 HashMap<Integer,Card> Naam = new HashMap<>();
                 Naam = card1.CheckLegalCard(card1, Hand.PlayedCard,P);
-                System.out.println("Naam = " + Naam);
+                //System.out.println("Naam = " + Naam);
                 Integer Mila = 0;
                 Mila = (Integer) Naam.keySet().toArray()[0];
                 if (Mila==1)
                         //card1.CheckLegalCard(card1, Hand.PlayedCard,P)
-                    {
+                    {// pop the card from your hand
                     P.PlayerHand.RemoveCardFromHand(card1);
-                    Hand.PlayedCard.setSuit(Naam.get(1).Suit);
+                    // update the Played card after 8
+                    //Hand.PlayedCard.setSuit(Naam.get(Mila).Suit);
+
+                        System.out.println("Now hand played card is " +Hand.PlayedCard.Suit );
+                    // add the played card in Discard card list
                     DiscarDdeck.AddCard(card1);
+                        Hand.PlayedCard.setSuit(Naam.get(Mila).Suit);
+                        Hand.PlayedCard.setValue(card1.Value);
                     //System.out.println("Your card set "+P.PlayerHand.CardsinHand);
                     Flag = false;
                 } else {
 
                     System.out.println("This is not a legal card, current Hand on table is " +Hand.PlayedCard);
                 }
-
-//                if (P.CheckCardinHand(card1))
-//                { // human picked a card from his hand
-//                    // again check if that is legal
-//                    if (card1.CheckLegalCard(card1))
-//                    {
-//                        P.PlayerHand.CardsinHand.remove(card1);
-//                        DiscarDdeck.AddCard(card1);
-//                        Flag = false;
-//                    }
-//
-//                    else
-//                    {
-//                        System.out.println("This is not a legal card");
-//                    }
-//                   // return card1;
-//
-//                }
-//                else
-//                {
-//                    System.out.println("Card is not in ur current  Hand, please input valid card... Dont cheat ");
-//                }
-
             }
 
         }
@@ -163,23 +142,35 @@ public  class Main {
     public static Player COMPUPLAY(Player ChOMOO) {
         Boolean Flag = true;
         while (Flag) {
+            Integer cc = ChOMOO.PlayerHand.CardInHandSize();
+            Card Temp = new Card("1_1");
+
             for (Card CP : ChOMOO.PlayerHand.CardsinHand) {
 
                 HashMap<Integer,Card> Naam1 = new HashMap<>();
+                //System.out.println("Computer is checking "+CP.Suit +CP.Value);
                 Naam1 = CP.CheckLegalCard(CP, Hand.PlayedCard,ChOMOO);
-                System.out.println("Naam1 Computer wala = " + Naam1);
+                //System.out.println("Naam1 Computer wala = " + Naam1);
                 Integer Mila1 = 0;
                 Mila1 = (Integer) Naam1.keySet().toArray()[0];
                 if (Mila1==1)
                 //card1.CheckLegalCard(card1, Hand.PlayedCard,P)
                 {
-                    ChOMOO.PlayerHand.RemoveCardFromHand(CP);
-                    Hand.PlayedCard.setSuit(Naam1.get(1).Suit);
+                    //ChOMOO.PlayerHand.RemoveCardFromHand(CP);
+                    //Hand.PlayedCard.setSuit(Naam1.get(1).Suit);
+                    System.out.println("Computer has " + ChOMOO.GetPlayerHandSize() + " Cards");
                     DiscarDdeck.AddCard(CP);
-                    //System.out.println("Your card set "+P.PlayerHand.CardsinHand);
+                    Temp = CP;
+                    Hand.PlayedCard.setSuit(Naam1.get(Mila1).Suit);
+                    Hand.PlayedCard.setValue(CP.Value);
+                    //System.out.println("Comp card set "+ChOMOO.PlayerHand.CardsinHand);
                     Flag = false;
+                    break;
+
                 }
             }
+            ChOMOO.PlayerHand.RemoveCardFromHand(Temp);
+            //System.out.println("tried removing "+ Temp);
 
             if (Flag)
 
@@ -203,41 +194,6 @@ public  class Main {
 
 
     }
-//    public static Player COMPUPLAY(Player ChOMOO) {
-//        Boolean Flag = true;
-//        while (Flag) {
-//            for (Card CP : ChOMOO.PlayerHand.CardsinHand) {
-//                if (CP.CheckLegalCard(CP, Hand.PlayedCard,ChOMOO)) {
-//                    ChOMOO.PlayerHand.RemoveCardFromHand(CP);
-//                    DiscarDdeck.AddCard(CP);
-//                    //System.out.println(ChOMOO.PlayerHand.CardsinHand);
-//                    Flag = false;
-//                    break;
-//                }
-//            }
-//
-//            if (Flag)
-//
-//            {
-//                if (Hand.DeckOfCards.DeckSize() != 0) {
-//                    Card card11 = new Card("1_1");
-//                    card11 = Hand.DeckOfCards.DealCard();
-//                    ChOMOO.PlayerHand.CardsinHand.add(card11);
-//                    System.out.println("Computer drew " + card11);
-//                    //System.out.println("Computer card set " + ChOMOO.PlayerHand.CardsinHand);
-//
-//                } else {
-//                    Flag = false;
-//                    // calculate points
-//                }
-//            }
-//
-//
-//        }
-//        return ChOMOO;
-//
-//
-//    }
 
 }
 

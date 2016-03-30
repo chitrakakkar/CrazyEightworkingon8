@@ -12,6 +12,8 @@ public class Hand
     private static final Integer NumberOfCardsInHand = 7;
     public static Deck DeckOfCards = new Deck();
     public static Card PlayedCard;
+
+
     //getter and setter
     public List<Card> getCardsinHand() {return CardsinHand;}
 
@@ -21,7 +23,8 @@ public class Hand
     public Hand()
     {
         this.CardsinHand = new ArrayList<Card>();
-        for (int i = 0; i < NumberOfCardsInHand; i++) {
+        for (int i = 0; i < NumberOfCardsInHand; i++)
+        {
                 // this.CardsinHand.add(new Deck().DealCard());
             this.CardsinHand.add(DeckOfCards.DealCard());
             }
@@ -31,6 +34,10 @@ public class Hand
 //            DeckOfCards.
 //        }
         }
+//    public Hand (String S)
+//    {
+//        this.PlayedCard.setSuit(S);
+//    }
 
 
     // method to print cards in hand
@@ -78,6 +85,7 @@ public class Hand
         }
         return TotalPoint;
     }
+
 
 }
 
