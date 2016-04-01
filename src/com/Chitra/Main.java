@@ -52,19 +52,19 @@ public  class Main {
                         System.out.println("Computer Won!.. Better Luck Next Time");
                         break;
                     }
-                    else if (Hand.DeckOfCards.DeckSize() == 0)
+                    else if (Hand.DeckOfCards.DeckSize().equals(0))
                     {
                         // calculate the points and declare winner
-                        if (HumanPlayer.PlayerHand.CalculateHandTotalPoint()<ComputerPlayer.PlayerHand.CalculateHandTotalPoint()) {
-                            System.out.println("Computer Won!.. Better Luck Next Time");
+                        if (HumanPlayer.PlayerHand.CalculateHandTotalPoint(HumanPlayer.PlayerHand.CardsinHand)<ComputerPlayer.PlayerHand.CalculateHandTotalPoint(ComputerPlayer.PlayerHand.CardsinHand)) {
+                            System.out.println("Computer Won!.. Better Luck Next Time its points are " + ComputerPlayer.PlayerHand.CalculateHandTotalPoint(ComputerPlayer.PlayerHand.CardsinHand));
                         }
                         else{
-                            System.out.println("You Won!!");
+                            System.out.println("You Won!! and your point is "+ HumanPlayer.PlayerHand.CalculateHandTotalPoint(HumanPlayer.PlayerHand.CardsinHand ));
                         }
                             break;
 
                     }
-                     // continue the game
+                     // // continue the game if the deck size or handsize of the player not 0
                     else {
                         HumanPlayer = READCARDForHuman(HumanPlayer);
                         System.out.println("You Played " + DiscarDdeck.DeckOfCard.pop());

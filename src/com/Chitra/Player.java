@@ -52,7 +52,7 @@ public class Player
 //        }
 //        else
 //        {
-//            System.out.println("Soweii.you played a invalid card");
+//            System.out.println("Sorry!!! you played a invalid card");
 //
 //            return false;
 //        }

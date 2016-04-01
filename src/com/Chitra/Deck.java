@@ -19,6 +19,7 @@ public  class Deck
     public void setDeckOfCard(Stack<Card> deckOfCard) {
         DeckOfCard = deckOfCard;
     }
+    Card card;
 
     //Constructor
     Deck()
@@ -50,6 +51,11 @@ public  class Deck
     public Card DealCard()
     {
         return DeckOfCard.pop();
+    }
+    // method to add card in the deck
+    public void AddCard(Card card)
+    {
+        this.DeckOfCard.add(this.card);
     }
 
 

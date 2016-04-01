@@ -11,6 +11,7 @@ public class Card
 
     protected String Suit;
     protected Integer Value;
+    protected int  DefaultValue=0;
 
     // constructor
     public Card(String suit, Integer value)
@@ -57,7 +58,7 @@ public class Card
         {
             //System.out.println(P.Name + "legal check passed , not 8");
             PlayedCard.setSuit(card.Suit);
-            PlayedCard.setValue(card.Value);
+            PlayedCard.setValue(DefaultValue);
             Flagg=1;
 
         }
@@ -99,7 +100,4 @@ public class Card
         return CardOnTable;
 
     }
-
-
-
 }

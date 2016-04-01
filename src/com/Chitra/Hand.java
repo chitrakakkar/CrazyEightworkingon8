@@ -20,24 +20,21 @@ public class Hand
     public void setCardsinHand(List<Card> cardsinHand) {CardsinHand = cardsinHand;}
 
     //constructor;deals 7 card to each player if two players are playing
-    public Hand()
-    {
+    public Hand() {
         this.CardsinHand = new ArrayList<Card>();
-        for (int i = 0; i < NumberOfCardsInHand; i++)
-        {
-                // this.CardsinHand.add(new Deck().DealCard());
+        for (int i = 0; i < NumberOfCardsInHand; i++) {
+            // this.CardsinHand.add(new Deck().DealCard());
             this.CardsinHand.add(DeckOfCards.DealCard());
-            }
-            this.PlayedCard = DeckOfCards.DealCard();
-//        if(PlayedCard.getValue() ==8)
-//        {
-//            DeckOfCards.
-//        }
         }
-//    public Hand (String S)
-//    {
-//        this.PlayedCard.setSuit(S);
-//    }
+        this.PlayedCard = DeckOfCards.DealCard();
+        if(PlayedCard.Value.equals(8))
+        {
+            System.out.println("Need to put it backto the stack");
+            DeckOfCards.AddCard(PlayedCard);
+            this.PlayedCard=DeckOfCards.DealCard();
+
+        }
+    }
 
 
     // method to print cards in hand
@@ -76,12 +73,12 @@ public class Hand
     }
 
 
-    public Integer CalculateHandTotalPoint()
+    public Integer CalculateHandTotalPoint(List<Card>CardsinHand)
     {
         int TotalPoint = 0;
-        for (Card cd:CardsinHand)
+        for (Card C:CardsinHand)
         {
-            TotalPoint += cd.Value;
+            TotalPoint += C.Value;
         }
         return TotalPoint;
     }
