@@ -43,7 +43,8 @@ public class Card
         return this.Suit + this.Value;
     }
 
-
+    // a method checks if the card is legal to play
+    //returns a hashmap with a flag and a card if legal
     public HashMap<Integer,Card> CheckLegalCard(Card card,Card PlayedCard,Player P)
     {
         HashMap<Integer,Card> Test = new HashMap<>();
@@ -58,7 +59,7 @@ public class Card
         {
             //System.out.println(P.Name + "legal check passed , not 8");
             PlayedCard.setSuit(card.Suit);
-            PlayedCard.setValue(DefaultValue);
+            PlayedCard.setValue(card.Value);
             Flagg=1;
 
         }
@@ -70,7 +71,7 @@ public class Card
         Test.put(Flagg,PlayedCard);
         return Test;
     }
-
+// a method to give user option to choose suit when 8 is played
     public Card PickSuit(Player player,Card CardOnTable) {
         if (player.Name.equals("Human")) {
             String UserInput = "";
@@ -89,8 +90,11 @@ public class Card
 
 
         }
-        // computer
-        else {
+        // computer chooses randomly..
+        // wanted to make it intelligent by picking the suit which suit computer has max. in its hand
+        //version-2
+        else
+        {
             String[] Suits = {"Hearts_", "Spades_", "Clubs_", "Diamonds_"};
             Random rnd = new Random();
             CardOnTable.setSuit(Suits[rnd.nextInt(Suits.length)]);

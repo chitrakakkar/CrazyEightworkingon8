@@ -5,6 +5,7 @@ import java.util.Stack;
 /**
  * Created by chitrakakkar on 3/18/16.
  */
+// This class is for the discrad deck ..can reshuffle it in case want to play again
 public class DiscardDeck extends Deck
 {
     public DiscardDeck()

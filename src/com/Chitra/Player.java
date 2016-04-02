@@ -17,6 +17,7 @@ public class Player
         this.PlayerHand = Playerhand;
 
     }
+    //getter and setters
     public Hand getPlayerHand() {return PlayerHand;}
 
     public void setPlayerHand(Hand playerHand){PlayerHand = playerHand;}
@@ -36,13 +37,7 @@ public class Player
         return PlayerHand.CardsinHand.size();
     }
 
-//    public void RemoveCardInHand( Card card)
-//    {
-//        System.out.println(PlayerHand.CardsinHand);
-//        this.PlayerHand.CardsinHand.remove(card);
-//
-//    }
-
+// Wanted to check if the card thrown is a valid card -version 2
 //    public Boolean CheckCardinHand (Card C)
 //    {
 //

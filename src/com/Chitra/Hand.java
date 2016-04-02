@@ -13,7 +13,6 @@ public class Hand
     public static Deck DeckOfCards = new Deck();
     public static Card PlayedCard;
 
-
     //getter and setter
     public List<Card> getCardsinHand() {return CardsinHand;}
 
@@ -27,14 +26,16 @@ public class Hand
             this.CardsinHand.add(DeckOfCards.DealCard());
         }
         this.PlayedCard = DeckOfCards.DealCard();
-        if(PlayedCard.Value.equals(8))
-        {
-            System.out.println("Need to put it back to the stack");
-            DeckOfCards.AddCard(PlayedCard);
-            this.PlayedCard=DeckOfCards.DealCard();
-            System.out.println(PlayedCard);
-
-        }
+        // To put the card back to the deck if the first card is 8-> not working now
+        //Still need to work on
+//        if(PlayedCard.Value.equals(8))
+//        {
+//            System.out.println("Need to put it back to the stack");
+//            DeckOfCards.AddCard(PlayedCard);
+//            this.PlayedCard=DeckOfCards.DealCard();
+//            System.out.println(PlayedCard);
+//
+//        }
     }
 
 
@@ -43,6 +44,7 @@ public class Hand
     {
         return CardsinHand.toString();
     }
+    // a method to remove cards from hand after being played
     public void RemoveCardFromHand(Card card)
     {
         Integer I =0;
@@ -66,6 +68,8 @@ public class Hand
     {
         return CardsinHand.size();
     }
+
+    // calculate total points when the cards in deck get exhausted
     public Integer CalculateHandTotalPoint(List<Card>CardsinHand)
     {
         int TotalPoint = 0;
