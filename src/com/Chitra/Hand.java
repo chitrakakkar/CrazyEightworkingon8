@@ -29,9 +29,10 @@ public class Hand
         this.PlayedCard = DeckOfCards.DealCard();
         if(PlayedCard.Value.equals(8))
         {
-            System.out.println("Need to put it backto the stack");
+            System.out.println("Need to put it back to the stack");
             DeckOfCards.AddCard(PlayedCard);
             this.PlayedCard=DeckOfCards.DealCard();
+            System.out.println(PlayedCard);
 
         }
     }
@@ -40,11 +41,9 @@ public class Hand
     // method to print cards in hand
     public String toString()
     {
-
         return CardsinHand.toString();
     }
     public void RemoveCardFromHand(Card card)
-
     {
         Integer I =0;
        // System.out.println("hereeeeee");
@@ -67,12 +66,6 @@ public class Hand
     {
         return CardsinHand.size();
     }
-    public void AddCardAgain(Card card)
-    {
-        CardsinHand.add(card);
-    }
-
-
     public Integer CalculateHandTotalPoint(List<Card>CardsinHand)
     {
         int TotalPoint = 0;
